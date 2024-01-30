@@ -1,13 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 function Header() {
   return (
-    <div>
-      <header>
+    <header>
         <h1>Mon super site</h1>
-      </header>
-    </div>
+        <Link to="/avocat">Avocat</Link>
+    </header>
   );
 }
 
