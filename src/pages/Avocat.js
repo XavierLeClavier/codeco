@@ -62,7 +62,7 @@ export default function Avocat() {
     }
     
     return (
-        <>
+        <main className='bg-primary'>
             <h1>Crypteur/décrypteur Avocat</h1>
             <p>
                 Le cryptage "Avocat" décale toute les lettres de 10 places
@@ -85,6 +85,6 @@ export default function Avocat() {
                 </div>
             </div>
             <Link to="/">Revenir à l'accueil</Link>
-        </>
+        </main>
     );
 }

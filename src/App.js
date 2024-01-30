@@ -6,6 +6,7 @@ import Footer from './elements/Footer';
 
 import Accueil from './pages/Accueil.js'
 import Avocat from './pages/Avocat';
+import Cassis from './pages/Cassis';
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
               path="/avocat"
               element={<Avocat />}
               key="avocat"
+            />
+            <Route
+              path="/cassis"
+              element={<Cassis />}
+              key="cassis"
             />
           </Routes>
         </div>
