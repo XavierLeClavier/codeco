@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 
-import img from '../img/envelope.png';
+import logo from '../img/codeco.png';
 
 function Header() {
     return (
-        <header className='bg-quaternary flex items-center justify-center gap-2'>
+        <header className='bg-quaternary flex items-center justify-center gap-2 text-white'>
             <Link to="/" className='flex'>
-                <img src={img} alt="logo" className='w-24' />
+                <img src={logo} alt="logo" className='w-24' />
             </Link>
             <Link to="/" className='flex'>
                 <p>Codeco</p>

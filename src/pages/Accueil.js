@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import avocado from '../img/avocado.png';
+import cassis from '../img/blackcurrant.png';
+
 function Accueil() {
     return (
-        <main className='bg-primary flex justify-center'>
+        <main className='flex justify-center'>
             <div className="w-10/12">
                 <h1 className="text-h1">Bienvenue sur Codeco</h1>
                 <p>

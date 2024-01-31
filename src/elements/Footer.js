@@ -1,10 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Footer() {
+export default function Footer() {
     return (
         <footer className='bg-quaternary'>
-            <p>Mon super footer</p>
+            <Link to="/">
+                Codeco, site de codage et décodage de messages secrets.
+            </Link>
+            <p>
+                License Apache 2.0
+            </p>
+            <a href="https://github.com/XavierLeClavier">
+                GitHub du projet
+            </a>
         </footer>
     );
 }
-export default Footer;

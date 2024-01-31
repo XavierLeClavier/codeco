@@ -6,11 +6,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#fff2cc",
-        secondary: "#a4be49",
-        tertiary: "#743a00",
-        quaternary: "#ce7e00",
-        quinary: "#2f1801",
+        primary: "#9fc5e8",
+        secondary: "#ffff00",
+        tertiary: "#b45f06",
+        quaternary: "#001949",
+        quinary: "#38761d",
       },
       fontFamily: {
         sans: ['Patrick Hand', 'sans-serif'],

@@ -10,7 +10,7 @@ import Cassis from './pages/Cassis';
 
 function App() {
   return (
-    <>
+    <div className='h-screen flex flex-col justify-between overflow-auto bg-primary'>
       <BrowserRouter>
         <Header />
         <div>
@@ -34,7 +34,7 @@ function App() {
         </div>
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
