@@ -9,3 +9,4 @@ là pour ajouter une étincelle de créativité à vos animations.
 
 ## Modes disponibles
 ### Avocat
+### Cassis K6

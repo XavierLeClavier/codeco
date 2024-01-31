@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className='bg-quaternary'>
+        <footer className='flex justify-around bg-quaternary text-white'>
             <Link to="/">
                 Codeco, site de codage et décodage de messages secrets.
             </Link>

@@ -23,11 +23,10 @@ function Accueil() {
                     <li>
                         L'astucieux <Link to="/avocat">Code Avocat</Link>, pour les détectives en herbe.
                     </li>
-
-                    <p>(en développement)</p>
                     <li>
                         Le joyeux <Link to="/cassis">Code Cassis</Link>, parfait pour les sourires des plus jeunes.
                     </li>
+                    <p>(en développement)</p>
                     <li>
                         Le légendaire Code César, qui éveillera l'explorateur en chacun.
                     </li>

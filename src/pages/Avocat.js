@@ -1,15 +1,11 @@
 import { React, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Convert from '../elements/Convert.js';
 
 // abcdefghijklmnopqrstuvwxyz
 
 export default function Avocat() {
-    // const [ctexte, setCtexte] = useRef();
     const ctexte = useRef();
-
-    // function changeCtexte(change){
-    //     setCtexte(change);
-    // }
 
     function AvK(sentence) {
         let result = "";
@@ -69,34 +65,11 @@ export default function Avocat() {
                     dans l'alphabet tel que la lettre "K" corresponde à la lettre
                     "A" (d'où "A-vaut-K")
                 </p>
-                <div className="flex justify-center gap-3">
-                    <div>
-                        <label className='flex flex-col'>
-                            <p>Texte à crypter :</p>
-                            <input type="text" name="texte" />
-                        </label>
-                    </div>
-                    <div className='flex flex-col justify-center gap-5 min-h-96 '>
-                        <button onClick={() => updateCtexte("AvK")}
-                            className='bg-secondary rounded flex justify-center items-center'>
-                            <p className='m-8'>
-                                Crypter
-                            </p>
-                        </button>
-                        <button onClick={() => updateCtexte("KvA")}
-                            className='bg-secondary rounded flex justify-center items-center'>
-                            <p className='m-8'>
-                                Décrypter
-                            </p>
-                        </button>
-                    </div>
-                    <div>
-                        <label className='flex flex-col'>
-                            <p>Texte crypté :</p>
-                            <input type="text" name="ctexte" disabled={true} value={ctexte.current?.value} ref={ctexte} />
-                        </label>
-                    </div>
-                </div>
+                <Convert 
+                    ctexte={ctexte}
+                    updateCtexte={updateCtexte}
+                    cryptway='AvK'
+                    decryptway='KvA'/>
                 <Link to="/">Revenir à l'accueil</Link>
             </div>
         </main>
