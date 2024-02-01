@@ -1,6 +1,7 @@
 import { React, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
+import ButtonElement from '../elements/ButtonElement.js';
 
 // abcdefghijklmnopqrstuvwxyz
 
@@ -57,7 +58,7 @@ export default function Avocat() {
     }
 
     return (
-        <main className='bg-primary flex justify-center'>
+        <div className='bg-primary flex justify-center'>
             <div className="w-10/12">
                 <h1 className="text-h1">Crypteur/décrypteur Avocat</h1>
                 <p>
@@ -70,8 +71,14 @@ export default function Avocat() {
                     updateCtexte={updateCtexte}
                     cryptway='AvK'
                     decryptway='KvA'/>
-                <Link to="/">Revenir à l'accueil</Link>
+                <Link to="/">
+                    <ButtonElement
+                        bStyle='bg-secondary rounded'
+                        pStyle='m-1'
+                        text="Revenir à l'accueil"
+                    />
+                </Link>
             </div>
-        </main>
+        </div>
     );
 }

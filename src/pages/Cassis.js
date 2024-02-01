@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
+import ButtonElement from '../elements/ButtonElement.js';
 
 export default function Cassis() {
     const ctexte = useRef();
@@ -65,7 +67,7 @@ export default function Cassis() {
         }
     }
     return (
-        <main className='bg-primary flex justify-center'>
+        <div className='bg-primary flex justify-center'>
             <div className="w-10/12">
                 <h1 className="text-h1">Crypteur/décrypteur Cassis</h1>
                 <p>
@@ -76,7 +78,15 @@ export default function Cassis() {
                     updateCtexte={updateCtexte}
                     cryptway='KS'
                     decryptway='SK'/>
+                <p>N.B. Mettre des " / " pour les espaces, saisir les nombres par paire (07 au lieu de 7)</p>
+                <Link to="/">
+                    <ButtonElement
+                        bStyle='bg-secondary rounded'
+                        pStyle='m-1'
+                        text="Revenir à l'accueil"
+                    />
+                </Link>
             </div>
-        </main>
+        </div>
     )
 }

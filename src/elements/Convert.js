@@ -1,36 +1,57 @@
 import React from 'react';
+import ButtonElement from './ButtonElement';
 
-export default function Convert(props){
+function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
+
+    function copier() {
+        navigator.clipboard.writeText(ctexte.current.value);
+    }
+
     return (
-        <main>
-            <div className="flex justify-center gap-3">
-                    <div>
-                        <label className='flex flex-col'>
-                            <p>Texte à crypter :</p>
-                            <input type="text" name="texte" />
-                        </label>
-                    </div>
-                    <div className='flex flex-col justify-center gap-5 min-h-96 '>
-                        <button onClick={() => props.updateCtexte(props.cryptway)}
-                            className='bg-secondary rounded flex justify-center items-center'>
-                            <p className='m-8'>
-                                Crypter
-                            </p>
-                        </button>
-                        <button onClick={() => props.updateCtexte(props.decryptway)}
-                            className='bg-secondary rounded flex justify-center items-center'>
-                            <p className='m-8'>
-                                Décrypter
-                            </p>
-                        </button>
-                    </div>
-                    <div>
-                        <label className='flex flex-col'>
-                            <p>Texte crypté :</p>
-                            <input type="text" name="ctexte" disabled={true} value={props.ctexte.current?.value} ref={props.ctexte} />
-                        </label>
-                    </div>
+        <div className="border-2 rounded my-2 flex">
+            <div className='m-4 flex-grow flex justify-center flex-col md:flex-row gap-3'>
+                <div className='w-full flex flex-col'>
+                    <textarea 
+                        name="texte" 
+                        className='p-4 w-full flex-grow border border-gray-300 rounded-md resize-none' 
+                        placeholder='Saisir votre message à crypter/décrypter'
+                    />
                 </div>
-        </main>
-    )
+                <div className='flex md:flex-col flex-row justify-around gap-5'>
+                    <ButtonElement
+                        arrowFunction={() => updateCtexte(cryptway)}
+                        bStyle='bg-secondary rounded'
+                        extra={{}}
+                        pStyle='m-8'
+                        text='Crypter' />
+                    <ButtonElement
+                        arrowFunction={() => updateCtexte(decryptway)}
+                        bStyle='bg-secondary rounded'
+                        extra={{}}
+                        pStyle='m-8'
+                        text='Décrypter' />
+                </div>
+                <div className='w-full flex flex-col'>
+                    <textarea 
+                        ref={ctexte}
+                        disabled={true} 
+                        className='cursor-text w-full flex-grow p-4 border border-gray-300 rounded-t-md resize-none'
+                        readOnly
+                        placeholder='Résultat'
+                    />
+                    <ButtonElement
+                arrowFunction={copier}
+                extra={{ "data-tooltip-target": "tooltip-light", "data-tooltip-style": "light" }}
+                bStyle="bg-quaternary rounded-b"
+                pStyle="text-white m-1 self-center mt-4"
+                text="Copier"
+            />
+                </div>
+                
+            </div>
+            
+        </div>
+    );
 }
+
+export default Convert;

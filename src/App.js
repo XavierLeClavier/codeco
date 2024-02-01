@@ -8,34 +8,20 @@ import Accueil from './pages/Accueil.js'
 import Avocat from './pages/Avocat';
 import Cassis from './pages/Cassis';
 
-function App() {
+export default function App() {
   return (
-    <div className='h-screen flex flex-col justify-between overflow-auto bg-primary'>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className='flex flex-col min-h-screen bg-primary'>
         <Header />
-        <div>
+        <main className='flex-grow'>
           <Routes>
-            <Route
-              path="/"
-              element={<Accueil />}
-              key="accueil"
-            />
-            <Route
-              path="/avocat"
-              element={<Avocat />}
-              key="avocat"
-            />
-            <Route
-              path="/cassis"
-              element={<Cassis />}
-              key="cassis"
-            />
+            <Route path="/" element={<Accueil />} key="accueil" />
+            <Route path="/avocat" element={<Avocat />} key="avocat" />
+            <Route path="/cassis" element={<Cassis />} key="cassis" />
           </Routes>
-        </div>
+        </main>
         <Footer />
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
