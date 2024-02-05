@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
 import ButtonElement from '../elements/ButtonElement.js';
 
+import exceptions from '../elements/exceptions.js';
+
 export default function Cassis() {
     const ctexte = useRef();
     
@@ -11,6 +13,7 @@ export default function Cassis() {
         const min = "abcdefghijklmnopqrstuvwxyz";
         const maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const chiffres = ["22","23","24","25","26","01","02","03","04","05","06","07","08","09","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20","21"];
+        sentence = exceptions(sentence);
 
         for (let i=0; i<sentence.length; i++) {
             if (min.includes(sentence[i])) {
@@ -36,6 +39,7 @@ export default function Cassis() {
         let result ="";
         const min = "abcdefghijklmnopqrstuvwxyz";
         const chiffres = ["22","23","24","25","26","01","02","03","04","05","06","07","08","09","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20","21"];
+        sentence = exceptions(sentence);
 
         for (let i=0; i<sentence.length; i++) {
             if (chiffres.includes(sentence[i]+sentence[i+1])) {
@@ -71,7 +75,8 @@ export default function Cassis() {
             <div className="w-10/12">
                 <h1 className="text-h1">Crypteur/décrypteur Cassis</h1>
                 <p>
-                    Le cryptage "Cassis" ou "K6" est un chiffrement par substitution. Où le chiffre "6" correspont à la lettre "K", "7" correspont à "L", "22" correspond à "A" etc...
+                    Le cryptage "Cassis" ou "K6" est un chiffrement par substitution. Où "06" correspont
+                    à la lettre "K", "07" correspont à "L", "22" correspond à "A" etc...
                 </p>
                 <Convert 
                     ctexte={ctexte}

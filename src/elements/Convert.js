@@ -11,9 +11,9 @@ function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
         <div className="border-2 rounded my-2 flex">
             <div className='m-4 flex-grow flex justify-center flex-col md:flex-row gap-3'>
                 <div className='w-full flex flex-col'>
-                    <textarea 
-                        name="texte" 
-                        className='p-4 w-full flex-grow border border-gray-300 rounded-md resize-none' 
+                    <textarea
+                        name="texte"
+                        className='p-4 w-full flex-grow border border-gray-300 rounded-md resize-none'
                         placeholder='Saisir votre message à crypter/décrypter'
                     />
                 </div>
@@ -24,6 +24,7 @@ function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
                         extra={{}}
                         pStyle='m-8'
                         text='Crypter' />
+                    <textarea className='cursor-text w-full resize-none hidden'/>
                     <ButtonElement
                         arrowFunction={() => updateCtexte(decryptway)}
                         bStyle='bg-secondary rounded'
@@ -32,24 +33,24 @@ function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
                         text='Décrypter' />
                 </div>
                 <div className='w-full flex flex-col'>
-                    <textarea 
+                    <textarea
                         ref={ctexte}
-                        disabled={true} 
+                        disabled={true}
                         className='cursor-text w-full flex-grow p-4 border border-gray-300 rounded-t-md resize-none'
                         readOnly
                         placeholder='Résultat'
                     />
                     <ButtonElement
-                arrowFunction={copier}
-                extra={{ "data-tooltip-target": "tooltip-light", "data-tooltip-style": "light" }}
-                bStyle="bg-quaternary rounded-b"
-                pStyle="text-white m-1 self-center mt-4"
-                text="Copier"
-            />
+                        arrowFunction={copier}
+                        extra={{ "data-tooltip-target": "tooltip-light", "data-tooltip-style": "light" }}
+                        bStyle="bg-quaternary rounded-b"
+                        pStyle="text-white self-center my-2"
+                        text="Copier"
+                    />
                 </div>
-                
+
             </div>
-            
+
         </div>
     );
 }

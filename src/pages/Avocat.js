@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
 import ButtonElement from '../elements/ButtonElement.js';
 
-// abcdefghijklmnopqrstuvwxyz
+import exceptions from '../elements/exceptions.js';
 
 export default function Avocat() {
-    const ctexte = useRef();
+    const ctexte = useRef();    
 
     function AvK(sentence) {
         let result = "";
         const min = "abcdefghijklmnopqrstuvwxyz";
         const maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        sentence = exceptions(sentence);
 
         for (let i = 0; i < sentence.length; i++) {
             if (min.includes(sentence[i])) {
@@ -32,6 +33,7 @@ export default function Avocat() {
         let result = "";
         const min = "abcdefghijklmnopqrstuvwxyz";
         const maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        sentence = exceptions(sentence);
 
         for (let i = 0; i < sentence.length; i++) {
             if (min.includes(sentence[i])) {

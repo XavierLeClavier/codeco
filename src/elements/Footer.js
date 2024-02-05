@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
             <p className='block md:hidden'>|</p>
             <a href="https://github.com/XavierLeClavier/codeco" className='flex gap-4 items-center'>
-                <p>GitHub du projet</p>
+                <p>Lien du projet</p>
                 <img src={logo} alt='logo' className='max-h-20'/>
             </a>
             </div>
