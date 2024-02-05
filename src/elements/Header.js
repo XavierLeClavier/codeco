@@ -18,6 +18,9 @@ function Header() {
             <Link to="/cassis" className='flex justify-center'>
                 <p>Cassis</p>
             </Link>
+            <Link to='/morse' className='flex justify center'>
+                <p>Morse</p>
+            </Link>
         </header>
     );
 }
