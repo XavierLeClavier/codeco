@@ -8,7 +8,7 @@ import exceptions from '../elements/exceptions.js';
 export default function Morse() {
     const ctexte = useRef();
 
-    const alphabet = {
+    const alphmorse = {
         a: ".-",
         b: "-...",
         c: "-.-.",
@@ -44,7 +44,34 @@ export default function Morse() {
         6: "-....",
         7: "--...",
         8: "---..",
-        9: "----."
+        9: "----.",
+        "'": ".----.",
+        "@": ".--.-.",
+        ")": "-.--.-",
+        "(": "-.--.",
+        "&": ".-...",
+        ":": "---...",
+        ",": "--..--",
+        "=": "-...-",
+        "!": "-.-.--",
+        ".": ".-.-.-",
+        "-": "-....-",
+        "+": ".-.-.",
+        "?": "..--..",
+        "/": "-..-.",
+        "\"": ".-..-.",
+        ";": "-.-.-.",
+        "_": "..--.-",
+        "$": "...-..-",
+        é: "..-..",
+        è: ".-..-",
+        à: ".--.-",
+        ç: "-.-..",
+        ï: "..--",
+        ë: ".-...",
+        ô: "---.",
+        ù: "..--",
+        ê: ".--.."
     }
 
     function TvM(sentence) {
@@ -54,39 +81,45 @@ export default function Morse() {
         for (let i = 0; i < sentence.length; i++) {
             let char = sentence[i].toLowerCase();
             if (char === " ") {
-                result += " ";
-            } else if (char === " ") {
-                result += '/';
+                result += "/";
+            } else if (char === "\n") {
+                result += "\n";
             }
-            else if (alphabet.hasOwnProperty(char)) {
-                result += alphabet[char] + " ";
+            else if (alphmorse.hasOwnProperty(char)) {
+                result += alphmorse[char] + " ";
             } else {
                 result += char + " ";
             }
         }
-    
+
         return result.trim(); // Trim to remove trailing space
     }
 
-    function MvT(sentence) {        
+    function MvT(sentence) {
         let result = "";
-        let words = sentence.split(" ");
-        for (let i = 0; i < words.length; i++) {
-            for (let [key, value] of Object.entries(alphabet)) {
-                if (value === words[i]) {
-                    result += key;
+        let words = sentence.trim().split(" / ");
+        words.forEach((word, index) => {
+            let letters = word.split(" ");
+            letters.forEach(letter => {
+                let char = alphmorse[letter];
+                if (char) {
+                    result += char;
                 }
+            });
+            if (index < words.length - 1) {
+                result += " ";
             }
-        }
+        });
         return result;
     }
 
     function updateCtexte(way) {
-        if (way === "TvM") {
-            ctexte.current.value = TvM(document.getElementsByName('texte')[0].value)
+        const inputText = document.getElementsByName('texte')[0].value; // Grab the input text
+        if (way === 1) {
+            ctexte.current.value = TvM(inputText);
         }
         else {
-            ctexte.current.value = MvT(document.getElementsByName('texte')[0].value)
+            ctexte.current.value = MvT(inputText);
         }
     }
 
@@ -105,8 +138,7 @@ export default function Morse() {
                 <Convert
                     ctexte={ctexte}
                     updateCtexte={updateCtexte}
-                    cryptway='TvM'
-                    decryptway='MvT' />
+                />
                 <Link to="/">
                     <ButtonElement
                         bStyle='bg-secondary rounded'

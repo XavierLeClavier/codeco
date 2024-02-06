@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonElement from './ButtonElement';
 
-function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
+function Convert({ ctexte, updateCtexte}) {
 
     function copier() {
         navigator.clipboard.writeText(ctexte.current.value);
@@ -13,20 +13,21 @@ function Convert({ ctexte, updateCtexte, cryptway, decryptway }) {
                 <div className='w-full flex flex-col'>
                     <textarea
                         name="texte"
+                        id="texte"
                         className='p-4 w-full flex-grow border border-gray-300 rounded-md resize-none'
                         placeholder='Saisir votre message à crypter/décrypter'
                     />
                 </div>
                 <div className='flex md:flex-col flex-row justify-around gap-5'>
                     <ButtonElement
-                        arrowFunction={() => updateCtexte(cryptway)}
+                        arrowFunction={() => updateCtexte(1)}
                         bStyle='bg-secondary rounded'
                         extra={{}}
                         pStyle='m-8'
                         text='Crypter' />
                     <textarea className='cursor-text w-full resize-none hidden'/>
                     <ButtonElement
-                        arrowFunction={() => updateCtexte(decryptway)}
+                        arrowFunction={() => updateCtexte(0)}
                         bStyle='bg-secondary rounded'
                         extra={{}}
                         pStyle='m-8'

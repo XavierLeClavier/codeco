@@ -7,15 +7,15 @@ import exceptions from '../elements/exceptions.js';
 
 export default function Cassis() {
     const ctexte = useRef();
-    
+
     function KS(sentence) {
-        let result ="";
+        let result = "";
         const min = "abcdefghijklmnopqrstuvwxyz";
         const maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const chiffres = ["22","23","24","25","26","01","02","03","04","05","06","07","08","09","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20","21"];
+        const chiffres = ["22", "23", "24", "25", "26", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"];
         sentence = exceptions(sentence);
 
-        for (let i=0; i<sentence.length; i++) {
+        for (let i = 0; i < sentence.length; i++) {
             if (min.includes(sentence[i])) {
                 result += chiffres[min.indexOf(sentence[i])]
                 result += " ";
@@ -36,22 +36,22 @@ export default function Cassis() {
     }
 
     function SK(sentence) {
-        let result ="";
+        let result = "";
         const min = "abcdefghijklmnopqrstuvwxyz";
-        const chiffres = ["22","23","24","25","26","01","02","03","04","05","06","07","08","09","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20","21"];
+        const chiffres = ["22", "23", "24", "25", "26", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"];
         sentence = exceptions(sentence);
 
-        for (let i=0; i<sentence.length; i++) {
-            if (chiffres.includes(sentence[i]+sentence[i+1])) {
-                result += min[chiffres.indexOf(sentence[i]+sentence[i+1])];
+        for (let i = 0; i < sentence.length; i++) {
+            if (chiffres.includes(sentence[i] + sentence[i + 1])) {
+                result += min[chiffres.indexOf(sentence[i] + sentence[i + 1])];
                 i++;
             }
-            else if (sentence[i] === " " && sentence[i+1] === "/" && sentence[i+2] === " ") {
+            else if (sentence[i] === " " && sentence[i + 1] === "/" && sentence[i + 2] === " ") {
                 result += " ";
                 i += 2;
             }
             else {
-                if (sentence[i] !== ' '){
+                if (sentence[i] !== ' ') {
                     result += sentence[i];
                 }
             }
@@ -61,9 +61,9 @@ export default function Cassis() {
 
         return result;
     }
-    
-    function updateCtexte(way){
-        if (way === "KS") {
+
+    function updateCtexte(way) {
+        if (way === 1) {
             ctexte.current.value = KS(document.getElementsByName('texte')[0].value)
         }
         else {
@@ -78,11 +78,10 @@ export default function Cassis() {
                     Le cryptage "Cassis" ou "K6" est un chiffrement par substitution. Où "06" correspont
                     à la lettre "K", "07" correspont à "L", "22" correspond à "A" etc...
                 </p>
-                <Convert 
+                <Convert
                     ctexte={ctexte}
                     updateCtexte={updateCtexte}
-                    cryptway='KS'
-                    decryptway='SK'/>
+                />
                 <p>N.B. Mettre des " / " pour les espaces, saisir les nombres par paire (07 au lieu de 7)</p>
                 <Link to="/">
                     <ButtonElement
