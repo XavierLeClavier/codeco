@@ -51,7 +51,7 @@ export default function Avocat() {
     }
 
     function updateCtexte(way) {
-        if (way === "AvK") {
+        if (way === 1) {
             ctexte.current.value = AvK(document.getElementsByName('texte')[0].value)
         }
         else {
@@ -70,9 +70,7 @@ export default function Avocat() {
                 </p>
                 <Convert 
                     ctexte={ctexte}
-                    updateCtexte={updateCtexte}
-                    cryptway='AvK'
-                    decryptway='KvA'/>
+                    updateCtexte={updateCtexte}/>
                 <Link to="/">
                     <ButtonElement
                         bStyle='bg-secondary rounded'

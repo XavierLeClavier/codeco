@@ -7,6 +7,7 @@ import Footer from './elements/Footer';
 import Accueil from './pages/Accueil.js'
 import Avocat from './pages/Avocat';
 import Cassis from './pages/Cassis';
+import Morse from './pages/Morse';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Route path="/" element={<Accueil />} key="accueil" />
             <Route path="/avocat" element={<Avocat />} key="avocat" />
             <Route path="/cassis" element={<Cassis />} key="cassis" />
+            <Route path="/morse" element={<Morse />} key="morse" />
           </Routes>
         </main>
         <Footer />
