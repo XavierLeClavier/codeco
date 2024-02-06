@@ -58,7 +58,6 @@ export default function Morse() {
         "-": "-....-",
         "+": ".-.-.",
         "?": "..--..",
-        "/": "-..-.",
         "\"": ".-..-.",
         ";": "-.-.-.",
         "_": "..--.-",
@@ -75,13 +74,12 @@ export default function Morse() {
     }
 
     function TvM(sentence) {
-        sentence = exceptions(sentence);
 
         let result = "";
         for (let i = 0; i < sentence.length; i++) {
             let char = sentence[i].toLowerCase();
             if (char === " ") {
-                result += "/";
+                result += "/ ";
             } else if (char === "\n") {
                 result += "\n";
             }
@@ -92,25 +90,29 @@ export default function Morse() {
             }
         }
 
-        return result.trim(); // Trim to remove trailing space
+        return result.trim();
     }
 
     function MvT(sentence) {
         let result = "";
-        let words = sentence.trim().split(" / ");
-        words.forEach((word, index) => {
-            let letters = word.split(" ");
-            letters.forEach(letter => {
-                let char = alphmorse[letter];
-                if (char) {
-                    result += char;
-                }
-            });
-            if (index < words.length - 1) {
+        let words = sentence.split(" ");
+
+        for (let i = 0; i < words.length; i++) {
+            if (words[i] === "/") {
                 result += " ";
+            } else if (words[i] === "\n") {
+                result += "\n";
+            } else {
+                let keys = Object.keys(alphmorse);
+                let values = Object.values(alphmorse);
+                if (values.includes(words[i])) {
+                    result += keys[values.indexOf(words[i])];
+                } else {
+                    result += words[i];
+                }
             }
-        });
-        return result;
+        }
+        return result.trim();
     }
 
     function updateCtexte(way) {
