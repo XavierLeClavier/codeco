@@ -95,25 +95,30 @@ export default function Morse() {
 
     function MvT(sentence) {
         let result = "";
-        let words = sentence.split(" ");
-
-        for (let i = 0; i < words.length; i++) {
-            if (words[i] === "/") {
-                result += " ";
-            } else if (words[i] === "\n") {
-                result += "\n";
-            } else {
-                let keys = Object.keys(alphmorse);
-                let values = Object.values(alphmorse);
-                if (values.includes(words[i])) {
-                    result += keys[values.indexOf(words[i])];
-                } else {
-                    result += words[i];
+        let sentences = sentence.split("\n");
+    
+        for (let i = 0; i < sentences.length; i++) {
+            let words = sentences[i].split("/");
+            for (let j = 0; j < words.length; j++) {
+                let chars = words[j].trim().split(" ");
+                for (let k = 0; k < chars.length; k++) {
+                    if (Object.values(alphmorse).includes(chars[k])) {
+                        result += Object.keys(alphmorse)[Object.values(alphmorse).indexOf(chars[k])];
+                    } else {
+                        result += chars[k];
+                    }
+                }
+                if (j < words.length - 1) {
+                    result += " ";
                 }
             }
+            if (i < sentences.length - 1) {
+                result += "\n";
+            }
         }
-        return result.trim();
+        return result;
     }
+    
 
     function updateCtexte(way) {
         const inputText = document.getElementsByName('texte')[0].value; // Grab the input text
