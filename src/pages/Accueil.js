@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Presentation from '../elements/Presentation';
+import blackcurrant from '../img/blackcurrant.jpg';
+import avocado from '../img/avocado.jpg';
+import morse from '../img/morse.jpg';
+
 function Accueil() {
     return (
         <div className='flex justify-center'>
@@ -17,18 +22,26 @@ function Accueil() {
                     <p>
                         Découvrez une multitude de codes fascinants :
                     </p>
+                    <div className='flex'>
+                    <Presentation 
+                        image={avocado}/>
+                    <Presentation 
+                        image={blackcurrant}/>
+                    <Presentation 
+                        image={morse}/>
+                    </div>
                     <li>
                         L'astucieux <Link to="/avocat">Code Avocat</Link>, pour les détectives en herbe.
                     </li>
                     <li>
                         Le joyeux <Link to="/cassis">Code Cassis</Link>, parfait pour les sourires des plus jeunes.
                     </li>
+                    <li>
+                        Le mystérieux <Link to="/morse">Code Morse</Link>, idéal pour des aventures en plein air.
+                    </li>
                     <p>(en développement)</p>
                     <li>
                         Le légendaire Code César, qui éveillera l'explorateur en chacun.
-                    </li>
-                    <li>
-                        Le mystérieux Code Morse, idéal pour des aventures en plein air.
                     </li>
                 </ul>
                 <p>
