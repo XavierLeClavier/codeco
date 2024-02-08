@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
 import ButtonElement from '../elements/ButtonElement.js';
 
-import exceptions from '../elements/exceptions.js';
+import courtshSound from '../audio/courtsh.wav';
+import longshSound from '../audio/longsh.wav';
+import courtlgSound from '../audio/courtlg.wav';
+import longlgSound from '../audio/longlg.wav';
+
+const courtsh = new Audio(courtshSound);
+const longsh = new Audio(longshSound);
+const courtlg = new Audio(courtlgSound);
+const longlg = new Audio(longlgSound);
 
 export default function Morse() {
     const ctexte = useRef();
@@ -129,6 +137,37 @@ export default function Morse() {
             ctexte.current.value = MvT(inputText);
         }
     }
+    
+    function playSound(partition){
+        console.log('This is the read partition : ' + partition)
+
+        for (let i = 0; i < partition.length; i++){
+            let letter = partition[i];
+            console.log('for started');
+            if (letter === '.'){
+                courtsh.play();
+                console.log("played .");
+            }
+            else if (letter === '-'){
+                longsh.play();
+                console.log("played -");
+
+            }
+            else if (letter === ' '){
+                //pause for 100 ms
+                setTimeout(() => {}, 1000);
+            }
+            else if (letter === '/'){
+                setTimeout(() => {}, 2000)
+            }
+            else{
+                longlg.play();
+                courtlg.play();
+                console.log("Unknown character: ", letter);
+            }
+            setTimeout(() => {}, 10);
+        }
+    }
 
     return (
         <div className='bg-primary flex justify-center'>
@@ -142,6 +181,9 @@ export default function Morse() {
                     technologies modernes, jouant un rôle crucial dans les domaines maritime
                     et militaire pour sa simplicité et son efficacité.
                 </p>
+                <ButtonElement 
+                    text='Lire'
+                    arrowFunction={() => playSound(ctexte.current.value)}/>
                 <Convert
                     ctexte={ctexte}
                     updateCtexte={updateCtexte}

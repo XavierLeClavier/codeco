@@ -41,7 +41,7 @@ function Convert({ ctexte, updateCtexte }) {
                 <div className='flex md:flex-col flex-row justify-center md:justify-around gap-5'>
                     <ButtonElement
                         arrowFunction={clearTextArea}
-                        text='Clear'
+                        text='Effacer'
                         bStyle='hidden md:block place-self-start' />
                     <ButtonElement
                         arrowFunction={() => updateCtexte(1)}
@@ -60,6 +60,7 @@ function Convert({ ctexte, updateCtexte }) {
                     <textarea
                         ref={ctexte}
                         disabled={true}
+                        name='convertedtext'
                         className='cursor-text w-full flex-grow p-4 border border-gray-300 rounded-t-md resize-none'
                         readOnly
                         placeholder='Résultat'
