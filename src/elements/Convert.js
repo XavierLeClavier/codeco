@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ButtonElement from './ButtonElement';
 
-function Convert({ ctexte, updateCtexte }) {
+function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
 
     function copier() {
         navigator.clipboard.writeText(ctexte.current.value);
@@ -14,6 +14,7 @@ function Convert({ ctexte, updateCtexte }) {
     };
 
     const ntext = useRef();
+    const vitesse = useRef();
 
     const clearTextArea = () => {
         setTextAreaValue('');
@@ -24,7 +25,7 @@ function Convert({ ctexte, updateCtexte }) {
         <div className="border-2 rounded my-2 flex">
             <div className='m-4 flex-grow flex justify-center flex-col md:flex-row gap-3'>
                 <div className='w-full flex flex-col'>
-                <ButtonElement
+                    <ButtonElement
                         arrowFunction={clearTextArea}
                         text='Clear'
                         bStyle='md:hidden block place-self-end' />
@@ -39,10 +40,25 @@ function Convert({ ctexte, updateCtexte }) {
                     />
                 </div>
                 <div className='flex md:flex-col flex-row justify-center md:justify-around gap-5'>
-                    <ButtonElement
-                        arrowFunction={clearTextArea}
-                        text='Effacer'
-                        bStyle='hidden md:block place-self-start' />
+                    <div className='flex justify-between'>
+                        <ButtonElement
+                            arrowFunction={clearTextArea}
+                            text='Effacer'
+                            bStyle='hidden md:block place-self-start'
+                        />
+                        {affichelire && 
+                        <div>
+                            <select name='vitesse' id='vitesse' ref={vitesse}>
+                                <option value='1'>Rapide</option>
+                                <option value='0'>Lent</option>
+                            </select>
+                            <ButtonElement
+                                text='Lire'
+                                arrowFunction={() => playSound(ctexte.current.value, vitesse)}
+                            />
+                        </div>
+                        }
+                    </div>
                     <ButtonElement
                         arrowFunction={() => updateCtexte(1)}
                         bStyle='bg-secondary rounded'

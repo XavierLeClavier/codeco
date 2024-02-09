@@ -5,8 +5,8 @@ import ButtonElement from '../elements/ButtonElement.js';
 
 import courtshSound from '../audio/courtsh.wav';
 import longshSound from '../audio/longsh.wav';
-import courtlgSound from '../audio/courtlg.wav';
-import longlgSound from '../audio/longlg.wav';
+import courtlgSound from '../audio/courtlg.mp3';
+import longlgSound from '../audio/longlg.mp3';
 
 const courtsh = new Audio(courtshSound);
 const longsh = new Audio(longshSound);
@@ -104,7 +104,7 @@ export default function Morse() {
     function MvT(sentence) {
         let result = "";
         let sentences = sentence.split("\n");
-    
+
         for (let i = 0; i < sentences.length; i++) {
             let words = sentences[i].split("/");
             for (let j = 0; j < words.length; j++) {
@@ -126,7 +126,7 @@ export default function Morse() {
         }
         return result;
     }
-    
+
 
     function updateCtexte(way) {
         const inputText = document.getElementsByName('texte')[0].value; // Grab the input text
@@ -137,37 +137,56 @@ export default function Morse() {
             ctexte.current.value = MvT(inputText);
         }
     }
-    
-    function playSound(partition){
-        console.log('This is the read partition : ' + partition)
 
-        for (let i = 0; i < partition.length; i++){
-            let letter = partition[i];
-            console.log('for started');
-            if (letter === '.'){
-                courtsh.play();
-                console.log("played .");
-            }
-            else if (letter === '-'){
-                longsh.play();
-                console.log("played -");
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
+    async function playSound(partition, vitesse) {
+        let letter;
+        let shortsound;
+        let longsound;
+        let shorttime;
+        let longtime;
+
+        if(vitesse==='1'){
+            shortsound = courtlg;
+            longsound = longlg;
+            shorttime=800;
+            longtime=1000;
+        }
+        else {
+            shortsound = courtsh;
+            longsound = longsh;
+            shorttime=400;
+            longtime=500;
+        }
+
+        for (let i = 0; i < partition.length; i++) {
+            if (partition[i] !== letter) {
+                letter = partition[i];
             }
-            else if (letter === ' '){
-                //pause for 100 ms
-                setTimeout(() => {}, 1000);
+            if (letter === '.') {
+                shortsound.play();
+                //pause for 245 ms
+                await sleep(shorttime);
             }
-            else if (letter === '/'){
-                setTimeout(() => {}, 2000)
+            else if (letter === '-') {
+                longsound.play();
+                await sleep(longtime);
             }
-            else{
-                longlg.play();
-                courtlg.play();
-                console.log("Unknown character: ", letter);
+            else if (letter === ' ') {
+                await sleep(shorttime);
             }
-            setTimeout(() => {}, 10);
+            else if (letter === '/') {
+                await sleep(longtime)
+            }
+            else {
+                await sleep(1000)
+            }
         }
     }
+
 
     return (
         <div className='bg-primary flex justify-center'>
@@ -181,12 +200,11 @@ export default function Morse() {
                     technologies modernes, jouant un rôle crucial dans les domaines maritime
                     et militaire pour sa simplicité et son efficacité.
                 </p>
-                <ButtonElement 
-                    text='Lire'
-                    arrowFunction={() => playSound(ctexte.current.value)}/>
                 <Convert
                     ctexte={ctexte}
                     updateCtexte={updateCtexte}
+                    playSound={playSound}
+                    affichelire={true}
                 />
                 <Link to="/">
                     <ButtonElement
