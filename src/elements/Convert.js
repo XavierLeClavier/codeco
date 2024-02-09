@@ -1,7 +1,13 @@
 import React, { useState, useRef } from 'react';
 import ButtonElement from './ButtonElement';
 
-function Convert({ ctexte, updateCtexte }) {
+function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
+    const [vitesseValue, setVitesseValue] = useState('0'); 
+    
+    const handleVitesseChange = (event) => {
+        const newValue = event.target.value;
+        setVitesseValue(newValue); 
+    };
 
     function copier() {
         navigator.clipboard.writeText(ctexte.current.value);
@@ -14,19 +20,20 @@ function Convert({ ctexte, updateCtexte }) {
     };
 
     const ntext = useRef();
+    const vitesse = useRef();
 
     const clearTextArea = () => {
         setTextAreaValue('');
-        ntext.current.focus()
+        ntext.current.focus();
     };
 
     return (
         <div className="border-2 rounded my-2 flex">
             <div className='m-4 flex-grow flex justify-center flex-col md:flex-row gap-3'>
                 <div className='w-full flex flex-col'>
-                <ButtonElement
+                    <ButtonElement
                         arrowFunction={clearTextArea}
-                        text='Clear'
+                        text='Effacer'
                         bStyle='md:hidden block place-self-end' />
                     <textarea
                         ref={ntext}
@@ -39,10 +46,25 @@ function Convert({ ctexte, updateCtexte }) {
                     />
                 </div>
                 <div className='flex md:flex-col flex-row justify-center md:justify-around gap-5'>
-                    <ButtonElement
-                        arrowFunction={clearTextArea}
-                        text='Clear'
-                        bStyle='hidden md:block place-self-start' />
+                    <div className='flex justify-between'>
+                        <ButtonElement
+                            arrowFunction={clearTextArea}
+                            text='Effacer'
+                            bStyle='hidden md:block place-self-start'
+                        />
+                        {affichelire &&
+                            <div className='hidden md:flex flex-col'>
+                                <select ref={vitesse} className='place-self-end' value={vitesseValue} onChange={handleVitesseChange}>
+                                    <option value='0'>Rapide</option>
+                                    <option value='1'>Lent</option>
+                                </select>
+                                <ButtonElement
+                                    text='Lire'
+                                    arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
+                                />
+                            </div>
+                        }
+                    </div>
                     <ButtonElement
                         arrowFunction={() => updateCtexte(1)}
                         bStyle='bg-secondary rounded'
@@ -56,10 +78,23 @@ function Convert({ ctexte, updateCtexte }) {
                         pStyle='m-8'
                         text='Décrypter' />
                 </div>
+                {affichelire &&
+                    <div className='md:hidden flex'>
+                        <select ref={vitesse} className='mr-2' value={vitesseValue} onChange={handleVitesseChange}>
+                            <option value='0'>Rapide</option>
+                            <option value='1'>Lent</option>
+                        </select>
+                        <ButtonElement
+                            text='Lire'
+                            arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
+                        />
+                    </div>
+                }
                 <div className='w-full flex flex-col'>
                     <textarea
                         ref={ctexte}
                         disabled={true}
+                        name='convertedtext'
                         className='cursor-text w-full flex-grow p-4 border border-gray-300 rounded-t-md resize-none'
                         readOnly
                         placeholder='Résultat'
@@ -72,9 +107,7 @@ function Convert({ ctexte, updateCtexte }) {
                         text="Copier"
                     />
                 </div>
-
             </div>
-
         </div>
     );
 }

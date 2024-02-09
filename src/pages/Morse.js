@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 import Convert from '../elements/Convert.js';
 import ButtonElement from '../elements/ButtonElement.js';
 
-import exceptions from '../elements/exceptions.js';
+import courtshSound from '../audio/courtsh.wav';
+import longshSound from '../audio/longsh.wav';
+import courtlgSound from '../audio/courtlg.mp3';
+import longlgSound from '../audio/longlg.mp3';
+
+const courtsh = new Audio(courtshSound);
+const longsh = new Audio(longshSound);
+const courtlg = new Audio(courtlgSound);
+const longlg = new Audio(longlgSound);
 
 export default function Morse() {
     const ctexte = useRef();
@@ -96,7 +104,7 @@ export default function Morse() {
     function MvT(sentence) {
         let result = "";
         let sentences = sentence.split("\n");
-    
+
         for (let i = 0; i < sentences.length; i++) {
             let words = sentences[i].split("/");
             for (let j = 0; j < words.length; j++) {
@@ -118,7 +126,7 @@ export default function Morse() {
         }
         return result;
     }
-    
+
 
     function updateCtexte(way) {
         const inputText = document.getElementsByName('texte')[0].value; // Grab the input text
@@ -130,10 +138,60 @@ export default function Morse() {
         }
     }
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function playSound(partition, vitesse) {
+        let letter;
+        let shortsound;
+        let longsound;
+        let shorttime;
+        let longtime;
+
+        if(vitesse==='1'){
+            shortsound = courtlg;
+            longsound = longlg;
+            shorttime=800;
+            longtime=1000;
+        }
+        else {
+            shortsound = courtsh;
+            longsound = longsh;
+            shorttime=400;
+            longtime=500;
+        }
+
+        for (let i = 0; i < partition.length; i++) {
+            if (partition[i] !== letter) {
+                letter = partition[i];
+            }
+            if (letter === '.') {
+                shortsound.play();
+                //pause for 245 ms
+                await sleep(shorttime);
+            }
+            else if (letter === '-') {
+                longsound.play();
+                await sleep(longtime);
+            }
+            else if (letter === ' ') {
+                await sleep(shorttime);
+            }
+            else if (letter === '/') {
+                await sleep(longtime)
+            }
+            else {
+                await sleep(1000)
+            }
+        }
+    }
+
+
     return (
         <div className='bg-primary flex justify-center'>
             <div className="w-10/12">
-                <h1 className="text-h1">Crypteur décrypteur Morse</h1>
+                <h1 className="text-h1">Crypteur/décrypteur Morse</h1>
                 <p>
                     Le code Morse, développé dans les années 1830 par Samuel Morse et Alfred
                     Vail, est un système de codage des lettres et des chiffres utilisant des
@@ -145,6 +203,8 @@ export default function Morse() {
                 <Convert
                     ctexte={ctexte}
                     updateCtexte={updateCtexte}
+                    playSound={playSound}
+                    affichelire={true}
                 />
                 <Link to="/">
                     <ButtonElement

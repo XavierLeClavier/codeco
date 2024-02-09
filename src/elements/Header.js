@@ -12,14 +12,15 @@ function Header() {
             <Link to="/" className='flex'>
                 <p>Codeco</p>
             </Link>
+            <p>|</p>
+            <Link to='/morse' className='flex justify center'>
+                <p>Morse</p>
+            </Link>
             <Link to="/avocat" className='flex justify-center'>
                 <p>Avocat</p>
             </Link>
             <Link to="/cassis" className='flex justify-center'>
                 <p>Cassis</p>
-            </Link>
-            <Link to='/morse' className='flex justify center'>
-                <p>Morse</p>
             </Link>
         </header>
     );

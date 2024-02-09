@@ -73,7 +73,7 @@ export default function Cassis() {
     return (
         <div className='bg-primary flex justify-center'>
             <div className="w-10/12">
-                <h1 className="text-h1">Crypteur/décrypteur Cassis</h1>
+                <h1 className="text-h1">Crypteur/décrypteur Cassis K6</h1>
                 <p>
                     Le cryptage "Cassis" ou "K6" est un chiffrement par substitution. Où "06" correspont
                     à la lettre "K", "07" correspont à "L", "22" correspond à "A" etc...
