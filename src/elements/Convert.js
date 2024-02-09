@@ -2,6 +2,12 @@ import React, { useState, useRef } from 'react';
 import ButtonElement from './ButtonElement';
 
 function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
+    const [vitesseValue, setVitesseValue] = useState('0'); 
+    
+    const handleVitesseChange = (event) => {
+        const newValue = event.target.value;
+        setVitesseValue(newValue); 
+    };
 
     function copier() {
         navigator.clipboard.writeText(ctexte.current.value);
@@ -18,7 +24,7 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
 
     const clearTextArea = () => {
         setTextAreaValue('');
-        ntext.current.focus()
+        ntext.current.focus();
     };
 
     return (
@@ -27,7 +33,7 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                 <div className='w-full flex flex-col'>
                     <ButtonElement
                         arrowFunction={clearTextArea}
-                        text='Clear'
+                        text='Effacer'
                         bStyle='md:hidden block place-self-end' />
                     <textarea
                         ref={ntext}
@@ -46,17 +52,17 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                             text='Effacer'
                             bStyle='hidden md:block place-self-start'
                         />
-                        {affichelire && 
-                        <div>
-                            <select name='vitesse' id='vitesse' ref={vitesse}>
-                                <option value='1'>Rapide</option>
-                                <option value='0'>Lent</option>
-                            </select>
-                            <ButtonElement
-                                text='Lire'
-                                arrowFunction={() => playSound(ctexte.current.value, vitesse)}
-                            />
-                        </div>
+                        {affichelire &&
+                            <div className='hidden md:flex flex-col'>
+                                <select ref={vitesse} className='place-self-end' value={vitesseValue} onChange={handleVitesseChange}>
+                                    <option value='0'>Rapide</option>
+                                    <option value='1'>Lent</option>
+                                </select>
+                                <ButtonElement
+                                    text='Lire'
+                                    arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
+                                />
+                            </div>
                         }
                     </div>
                     <ButtonElement
@@ -72,6 +78,18 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                         pStyle='m-8'
                         text='Décrypter' />
                 </div>
+                {affichelire &&
+                    <div className='md:hidden flex'>
+                        <select ref={vitesse} className='mr-2' value={vitesseValue} onChange={handleVitesseChange}>
+                            <option value='0'>Rapide</option>
+                            <option value='1'>Lent</option>
+                        </select>
+                        <ButtonElement
+                            text='Lire'
+                            arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
+                        />
+                    </div>
+                }
                 <div className='w-full flex flex-col'>
                     <textarea
                         ref={ctexte}
@@ -89,9 +107,7 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                         text="Copier"
                     />
                 </div>
-
             </div>
-
         </div>
     );
 }

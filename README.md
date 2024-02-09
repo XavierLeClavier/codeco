@@ -8,7 +8,8 @@ là pour ajouter une étincelle de créativité à vos animations.
 
 ## Modes disponibles
 Avocat (A→K & K→A) <br>
-Cassis K6 (K→6 & 6→K)
+Cassis K6 (K→6 & 6→K) <br/>
+Morse (Texte→Morse & Morse→Texte)
 
 ## Utilisation
 Le site web est entièrement open-source sous la license Apache 2.0
