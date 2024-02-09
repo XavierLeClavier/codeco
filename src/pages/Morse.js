@@ -191,7 +191,7 @@ export default function Morse() {
     return (
         <div className='bg-primary flex justify-center'>
             <div className="w-10/12">
-                <h1 className="text-h1">Crypteur décrypteur Morse</h1>
+                <h1 className="text-h1">Crypteur/décrypteur Morse</h1>
                 <p>
                     Le code Morse, développé dans les années 1830 par Samuel Morse et Alfred
                     Vail, est un système de codage des lettres et des chiffres utilisant des
