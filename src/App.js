@@ -8,6 +8,8 @@ import Accueil from './pages/Accueil.js'
 import Avocat from './pages/Avocat';
 import Cassis from './pages/Cassis';
 import Morse from './pages/Morse';
+import Bases from './pages/Bases';
+import NotFound from './pages/NotFound.js';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
             <Route path="/avocat" element={<Avocat />} key="avocat" />
             <Route path="/cassis" element={<Cassis />} key="cassis" />
             <Route path="/morse" element={<Morse />} key="morse" />
+            <Route path="/bases" element={<Bases />} key="bases" />
+            <Route path="*" element={<NotFound />} key="notfound" />
           </Routes>
         </main>
         <Footer />

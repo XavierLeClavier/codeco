@@ -22,6 +22,9 @@ function Header() {
             <Link to="/cassis" className='flex justify-center'>
                 <p>Cassis</p>
             </Link>
+            <Link to="/bases" className='flex justify-center'>
+                <p>Bases</p>
+            </Link>
         </header>
     );
 }
