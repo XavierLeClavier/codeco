@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import ButtonElement from './ButtonElement';
 
-function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
-    const [vitesseValue, setVitesseValue] = useState('0'); 
+function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar,  }) {
+    const [vitesseValue, setVitesseValue] = useState('0');
+    // const [baseValue, setBaseValue] = useState('10');
     
     const handleVitesseChange = (event) => {
         const newValue = event.target.value;
@@ -21,6 +22,7 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
 
     const ntext = useRef();
     const vitesse = useRef();
+    const base = useRef();
 
     const clearTextArea = () => {
         setTextAreaValue('');
@@ -64,6 +66,14 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                                 />
                             </div>
                         }
+                        {affichepar && 
+                            <input 
+                                type='number' 
+                                className='w-3/6 hidden md:flex flex-col' 
+                                placeholder='Base'
+                                name='base'
+                                ref={base}
+                                 />}
                     </div>
                     <ButtonElement
                         arrowFunction={() => updateCtexte(1)}
@@ -90,6 +100,14 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire }) {
                         />
                     </div>
                 }
+                {affichepar && 
+                    <input 
+                        type='number' 
+                        className='w-12 md:hidden flex' 
+                        placeholder='Base'
+                        name='base'
+                        ref={base}
+                            />}
                 <div className='w-full flex flex-col'>
                     <textarea
                         ref={ctexte}

@@ -9,7 +9,8 @@ lien : https://morsecode.world/international/translator.html
 ## Modes disponibles
 Avocat (A→K & K→A) <br>
 Cassis K6 (K→6 & 6→K) <br/>
-Morse (Texte→Morse & Morse→Texte & Lecture audio du message)
+Morse (Texte→Morse & Morse→Texte & Lecture audio du message)<br/>
+Bases (Base N→Base 10 & Base 10→Base N)
 
 ## Pour qui ?
 Si vous êtes un animateur à la recherche d'une touche d'aventure pour vos jeux, n'arrivez pas à résoudre un message codé, ou êtes tout simplement intéréssé par  vous êtes au bon endroit.
