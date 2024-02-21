@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import ButtonElement from './ButtonElement';
 
-function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar,  }) {
+function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar, downloadMorseCode }) {
     const [vitesseValue, setVitesseValue] = useState('0');
     // const [baseValue, setBaseValue] = useState('10');
-    
+
     const handleVitesseChange = (event) => {
         const newValue = event.target.value;
-        setVitesseValue(newValue); 
+        setVitesseValue(newValue);
     };
 
     function copier() {
@@ -64,16 +64,19 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar,  })
                                     text='Lire'
                                     arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
                                 />
+                                <ButtonElement
+                                    text='Télécharger'
+                                    arrowFunction={downloadMorseCode} />
                             </div>
                         }
-                        {affichepar && 
-                            <input 
-                                type='number' 
-                                className='w-3/6 hidden md:flex flex-col' 
+                        {affichepar &&
+                            <input
+                                type='number'
+                                className='w-3/6 hidden md:flex flex-col'
                                 placeholder='Base'
                                 name='base'
                                 ref={base}
-                                 />}
+                            />}
                     </div>
                     <ButtonElement
                         arrowFunction={() => updateCtexte(1)}
@@ -98,16 +101,19 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar,  })
                             text='Lire'
                             arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
                         />
+                        <ButtonElement
+                            text='Télécharger'
+                            arrowFunction={downloadMorseCode} />
                     </div>
                 }
-                {affichepar && 
-                    <input 
-                        type='number' 
-                        className='w-12 md:hidden flex' 
+                {affichepar &&
+                    <input
+                        type='number'
+                        className='w-12 md:hidden flex'
                         placeholder='Base'
                         name='base'
                         ref={base}
-                            />}
+                    />}
                 <div className='w-full flex flex-col'>
                     <textarea
                         ref={ctexte}

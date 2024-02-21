@@ -149,17 +149,17 @@ export default function Morse() {
         let shorttime;
         let longtime;
 
-        if(vitesse==='1'){
+        if (vitesse === '1') {
             shortsound = courtlg;
             longsound = longlg;
-            shorttime=800;
-            longtime=1000;
+            shorttime = 800;
+            longtime = 1000;
         }
         else {
             shortsound = courtsh;
             longsound = longsh;
-            shorttime=400;
-            longtime=500;
+            shorttime = 400;
+            longtime = 500;
         }
 
         for (let i = 0; i < partition.length; i++) {
@@ -205,6 +205,7 @@ export default function Morse() {
                     updateCtexte={updateCtexte}
                     playSound={playSound}
                     affichelire={true}
+                    downloadMorseCode={downloadMorseCode}
                 />
                 <Link to="/">
                     <ButtonElement
