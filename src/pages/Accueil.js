@@ -14,10 +14,10 @@ function Accueil() {
                 <h1 className="text-h1">Bienvenue sur Codeco !</h1>
                 <p>
                     Si vous êtes un animateur à la recherche d'une touche d'aventure pour vos jeux, n'arrivez pas à résoudre
-                    un message codé, ou êtes tout simplement intéréssé par vous êtes au bon endroit. Nous sommes ravis de
-                    partager avec vous notre passion pour les codes secrets et les énigmes. Que ce soit pour des chasses au
-                    trésor passionnantes, des jeux de piste intrigants ou des activités de groupe dynamiques, Codeco est là
-                    pour ajouter une étincelle de créativité à vos animations.
+                    un message codé, ou êtes tout simplement intéréssé par les codes vous êtes au bon endroit. Nous sommes
+                    ravis de partager avec vous notre passion pour les codes secrets et les énigmes. Que ce soit pour des
+                    chasses au trésor passionnantes, des jeux de piste intrigants ou des activités de groupe dynamiques,
+                    Codeco est là pour ajouter une étincelle de créativité à vos animations.
                 </p>
 
                 <ul>

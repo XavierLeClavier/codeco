@@ -7,11 +7,15 @@ import courtshSound from '../audio/courtsh.wav';
 import longshSound from '../audio/longsh.wav';
 import courtlgSound from '../audio/courtlg.mp3';
 import longlgSound from '../audio/longlg.mp3';
+import courtcocoSound from '../audio/courtcoco.wav';
+import longcocoSound from '../audio/longcoco.wav';
 
 const courtsh = new Audio(courtshSound);
 const longsh = new Audio(longshSound);
 const courtlg = new Audio(courtlgSound);
 const longlg = new Audio(longlgSound);
+const courtcoco = new Audio(courtcocoSound);
+const longcoco = new Audio(longcocoSound);
 
 export default function Morse() {
     const ctexte = useRef();
@@ -138,52 +142,75 @@ export default function Morse() {
         }
     }
 
+    function playSound(partition, vitesse) {
+
+        if (vitesse === '0') {
+            const shortsound = courtsh;
+            const longsound = longsh;
+            const shorttime = 400;
+            const longtime = 500;
+            playPartition(partition, shortsound, longsound, shorttime, longtime);
+        }
+        else if (vitesse === '1') {
+            const shortsound = courtlg;
+            const longsound = longlg;
+            const shorttime = 800;
+            const longtime = 1000;
+            playPartition(partition, shortsound, longsound, shorttime, longtime);
+        }
+        else if (vitesse === '2') {
+            const shortsound = courtcoco;
+            const longsound = longcoco;
+            const shorttime = 377;
+            const longtime = 500;
+            playPartition(partition, shortsound, longsound, shorttime, longtime);
+        }
+        else {
+            return;
+        }
+    }
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function playSound(partition, vitesse) {
+    async function playPartition(partition, shortsound, longsound, shorttime, longtime) {
         let letter;
-        let shortsound;
-        let longsound;
-        let shorttime;
-        let longtime;
+        let i;
 
-        if (vitesse === '1') {
-            shortsound = courtlg;
-            longsound = longlg;
-            shorttime = 800;
-            longtime = 1000;
-        }
-        else {
-            shortsound = courtsh;
-            longsound = longsh;
-            shorttime = 400;
-            longtime = 500;
-        }
+        for (i=0; i<partition.length; i++) {
 
-        for (let i = 0; i < partition.length; i++) {
-            if (partition[i] !== letter) {
-                letter = partition[i];
+            letter = partition[i];
+
+            switch (letter) {
+
+                default:
+                    await sleep(1000);
+                    break;
+                
+                case ('.'):
+                    shortsound.play();
+                    // console.log('shortsound' + i);
+                    await sleep(shorttime);
+                    break;
+
+                case ('-'):
+                    longsound.play();
+                    // console.log('longsound' + i)
+                    await sleep(longtime);
+                    break;
+
+                case (' '):
+                    await sleep(shorttime);
+                    // console.log('shorttime' + i);
+                    break;
+
+                case ('/'):
+                    await sleep(longtime)
+                    // console.log('longtime' + i);
+                    break;
             }
-            if (letter === '.') {
-                shortsound.play();
-                //pause for 245 ms
-                await sleep(shorttime);
-            }
-            else if (letter === '-') {
-                longsound.play();
-                await sleep(longtime);
-            }
-            else if (letter === ' ') {
-                await sleep(shorttime);
-            }
-            else if (letter === '/') {
-                await sleep(longtime)
-            }
-            else {
-                await sleep(1000)
-            }
+            letter = ' ';
         }
     }
 
@@ -205,7 +232,7 @@ export default function Morse() {
                     updateCtexte={updateCtexte}
                     playSound={playSound}
                     affichelire={true}
-                    downloadMorseCode={downloadMorseCode}
+                // downloadMorseCode={downloadMorseCode}
                 />
                 <Link to="/">
                     <ButtonElement

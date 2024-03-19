@@ -57,16 +57,17 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar, dow
                         {affichelire &&
                             <div className='hidden md:flex flex-col'>
                                 <select ref={vitesse} className='place-self-end' value={vitesseValue} onChange={handleVitesseChange}>
-                                    <option value='0'>Rapide</option>
-                                    <option value='1'>Lent</option>
+                                <option value='0'>Rapide</option>
+                                <option value='1'>Lent</option>
+                                <option value='2'>Coco</option>
                                 </select>
                                 <ButtonElement
                                     text='Lire'
                                     arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
                                 />
-                                <ButtonElement
+                                {/* <ButtonElement
                                     text='Télécharger'
-                                    arrowFunction={downloadMorseCode} />
+                                    arrowFunction={downloadMorseCode} /> */}
                             </div>
                         }
                         {affichepar &&
@@ -96,14 +97,15 @@ function Convert({ ctexte, updateCtexte, playSound, affichelire, affichepar, dow
                         <select ref={vitesse} className='mr-2' value={vitesseValue} onChange={handleVitesseChange}>
                             <option value='0'>Rapide</option>
                             <option value='1'>Lent</option>
+                            <option value='2'>Coco</option>
                         </select>
                         <ButtonElement
                             text='Lire'
                             arrowFunction={() => playSound(ctexte.current.value, vitesse.current.value)}
                         />
-                        <ButtonElement
+                        {/* <ButtonElement
                             text='Télécharger'
-                            arrowFunction={downloadMorseCode} />
+                            arrowFunction={downloadMorseCode} /> */}
                     </div>
                 }
                 {affichepar &&
